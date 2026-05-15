@@ -5,6 +5,7 @@ import { connectDatabase } from "./config/dbConnects.js";
 import productRoutes from "./routes/products.js"; 
 import authRoutes from "./routes/auth.js";
 import orderRoutes from "./routes/order.js";
+import reviewsRoutes from "./routes/reviews.js";
 import errorMiddleware from "./middlewares/errorsMiddleware.js";
 
 const app = express();
@@ -33,7 +34,7 @@ app.use(cookieParser());
 app.use("/api", productRoutes);
 app.use("/api", authRoutes);
 app.use("/api", orderRoutes);
-
+app.use("/api", reviewsRoutes);
 
 // Use error handling middleware
 app.use(errorMiddleware);
