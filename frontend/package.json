@@ -12,6 +12,7 @@
     "react-dom": "^19.2.6",
     "react-helmet-async": "^3.0.0",
     "react-hot-toast": "^2.6.0",
+    "react-paginate": "^8.3.0",
     "react-redux": "^9.3.0",
     "react-router-dom": "^7.15.1",
     "react-scripts": "5.0.1",
