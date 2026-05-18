@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import CustomImage from "../common/CustomImage";
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, columnSize }) => {
   return (
-    <div className="col-sm-12 col-md-6 col-lg-3 my-3">
+    <div className={`col-sm-12 col-md-6 col-lg-${columnSize} my-3`}>
       <div className="card p-3 rounded">
         <CustomImage
           className="card-img-top mx-auto"
