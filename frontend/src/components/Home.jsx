@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import CustomPagination from "./layout/CustomPagination";
 import { useSearchParams } from "react-router-dom";
 
-import { useGetProductsQuery } from "../redux/productApi";
+import { useGetProductsQuery } from "../redux/api/productApi";
 
 import MetaData from "./layout/MetaData";
 import Loader from "./layout/Loder";
