@@ -13,9 +13,13 @@ const Header = () => {
 
   const { user } = useSelector((state) => state.auth);
 
-  const logoutHandler = () => {
-    logout();
-    navigate(0);
+  const logoutHandler = async () => {
+    try {
+      await logout().unwrap(); // Wait for the logout to actually finish
+      navigate("/"); // Smoothly go home
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
   };
 
   return (
@@ -71,23 +75,20 @@ const Header = () => {
                 {" "}
                 Dashboard{" "}
               </Link>
-
               <Link className="dropdown-item" to="/me/orders">
                 {" "}
                 Orders{" "}
               </Link>
-
               <Link className="dropdown-item" to="/me/profile">
                 {" "}
                 Profile{" "}
               </Link>
-
               <Link
                 className="dropdown-item text-danger"
                 to="/"
                 onClick={logoutHandler}
               >
-                Logout{" "}
+                Logout
               </Link>
             </div>
           </div>
