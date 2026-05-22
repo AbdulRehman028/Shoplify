@@ -28,11 +28,25 @@ export const userApi = createApi({
           url: "/me/update",
           method: "PUT",
           body,
-        }
+        };
       },
       invalidatesTags: ["User"], // 3. This tells Redux: "The User data is old! Fetch it again!"
-    })
+    }),
+    uploadAvatar: builder.mutation({
+      query(body) {
+        return {
+          url: "/me/upload_avatar",
+          method: "PUT",
+          body,
+        };
+      },
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
-export const { useGetMeQuery, useUpdateProfileMutation } = userApi;
+export const {
+  useGetMeQuery,
+  useUpdateProfileMutation,
+  useUploadAvatarMutation,
+} = userApi;

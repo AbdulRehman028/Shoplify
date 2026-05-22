@@ -11,11 +11,11 @@ const Profile = () => {
         <div className="col-12 col-md-3">
           <figure className="avatar avatar-profile">
             <CustomImage
-                src={user?.avatar}     
-                alt={user?.name}  
-                className="rounded-circle img-fluid"
-                customDefault="/images/default_avatar.jpg"
-              />
+              src={user?.avatar?.url}
+              alt={user?.name}
+              className="rounded-circle img-fluid"
+              customDefault="/images/default_avatar.jpg"
+            />
           </figure>
         </div>
 
