@@ -60,7 +60,7 @@ const UploadAvatar = () => {
 
   return (
     <UserLayout>
-      <div className="row wrapper">
+      <div className="row wrapper mt-0">
         <div className="col-10 col-lg-8">
           <form className="shadow rounded bg-body" onSubmit={submitHandler}>
             <h2 className="mb-4">Upload Avatar</h2>

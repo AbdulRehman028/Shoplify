@@ -30,7 +30,7 @@ const UpdateProfile = () => {
       toast.success("User Updated");
       navigate("/me/profile");
     }
-  }, [user, error, isSuccess]);
+  }, [user, error, isSuccess, navigate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -45,7 +45,7 @@ const UpdateProfile = () => {
 
   return (
     <UserLayout>
-      <div className="row wrapper">
+      <div className="row wrapper mt-0">
         <div className="col-10 col-lg-8">
           <form className="shadow rounded bg-body" onSubmit={submitHandler}>
             <h2 className="mb-4">Update Profile</h2>

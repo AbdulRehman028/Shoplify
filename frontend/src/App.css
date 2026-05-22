@@ -287,6 +287,10 @@ footer {
   font-weight: 700;
 }
 
+.wrapper.mt-0 {
+  margin-top: 0 !important;
+}
+
 .wrapper form {
   padding: 2.5rem 3rem;
 }
@@ -562,4 +566,19 @@ footer {
   border-color: #f3f4f6;
   border-radius: 0.3rem;
   color: #fa9c23;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 15px;
+  top: 40px; /* Adjusted to sit inside the input box */
+  cursor: pointer;
+  z-index: 10;
+  color: #777;
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle-icon:hover {
+  color: #000;
 }

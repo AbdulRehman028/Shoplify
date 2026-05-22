@@ -4,7 +4,7 @@ import { setIsAuthenticated, setUser, setLoading } from "../features/userSlice";
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
-  tagTypes: ["User"], // 1. Define the Tag
+  tagTypes: ["User"],
   endpoints: (builder) => ({
     getMe: builder.query({
       query: () => `/me`,
@@ -20,7 +20,7 @@ export const userApi = createApi({
           console.log(error);
         }
       },
-      providesTags: ["User"], // 2. This query provides the 'User' data
+      providesTags: ["User"], 
     }),
     updateProfile: builder.mutation({
       query(body) {
@@ -30,7 +30,7 @@ export const userApi = createApi({
           body,
         };
       },
-      invalidatesTags: ["User"], // 3. This tells Redux: "The User data is old! Fetch it again!"
+      invalidatesTags: ["User"],
     }),
     uploadAvatar: builder.mutation({
       query(body) {
@@ -42,6 +42,15 @@ export const userApi = createApi({
       },
       invalidatesTags: ["User"],
     }),
+    updatePassword: builder.mutation({
+      query(body) {
+        return {
+          url: "/password/update",
+          method: "PUT",
+          body,
+        };
+      },
+    }),
   }),
 });
 
@@ -49,4 +58,5 @@ export const {
   useGetMeQuery,
   useUpdateProfileMutation,
   useUploadAvatarMutation,
+  useUpdatePasswordMutation,
 } = userApi;

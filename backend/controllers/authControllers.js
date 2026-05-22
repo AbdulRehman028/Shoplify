@@ -171,12 +171,12 @@ export const updatePassword = catchAsyncErrors(async (req, res, next) => {
   }
 
   // Check if new password and confirm password match
-  if (req.body.newPassword !== req.body.confirmPassword) {
+  if (req.body.password  !== req.body.confirmPassword) {
     return next(new ErrorHandler("Passwords do not match", 400));
   }
 
   // Set the new password
-  user.password = req.body.newPassword;
+  user.password = req.body.password;
 
   await user.save();
 
