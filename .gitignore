@@ -28,3 +28,6 @@ config.env
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Target your exact nested backend config file
+backend/config/config.env
