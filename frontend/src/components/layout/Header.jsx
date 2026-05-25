@@ -12,6 +12,7 @@ const Header = () => {
   const [logout] = useLazyLogoutQuery();
 
   const { user } = useSelector((state) => state.auth);
+  const { cartItems } = useSelector((state) => state.cart);
 
   const logoutHandler = async () => {
     try {
@@ -27,7 +28,7 @@ const Header = () => {
       <div className="col-12 col-md-3 ps-5">
         <div className="navbar-brand">
           <a href="/">
-            <img src="/images/shopit_logo.png" alt="ShopIT Logo" />
+            <img src="/images/shoplify_logo.png" alt="Shoplify Logo" width="150" height="50" />
           </a>
         </div>
       </div>
@@ -41,7 +42,7 @@ const Header = () => {
             Cart{" "}
           </span>
           <span className="ms-1" id="cart_count">
-            0
+            {cartItems?.length}
           </span>
         </a>
 

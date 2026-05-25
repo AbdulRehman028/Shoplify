@@ -5,16 +5,20 @@ import { toast } from "react-hot-toast";
 import Loader from "../layout/Loder";
 import { Rating } from "react-simple-star-rating";
 import CustomImage from "../common/CustomImage";
+import { useDispatch } from "react-redux";
+import { setCartItem } from "../../redux/features/cartSlice";
 
 const ProductDetails = () => {
   const params = useParams();
+  const dispatch = useDispatch();
+
+  const [quantity, setQuantity] = useState(1);
+  const [activeImg, setActiveImg] = useState("");
 
   const { data, isLoading, error, isError } = useGetProductDetailsQuery(
     params?.id,
   );
   const product = data?.product;
-
-  const [activeImg, setActiveImg] = useState("");
 
   useEffect(() => {
     setActiveImg(
@@ -29,6 +33,32 @@ const ProductDetails = () => {
       toast.error(error?.data?.message);
     }
   }, [isError, error]);
+
+  const increaseQty = () => {
+    if (quantity >= product?.stock) return;
+
+    setQuantity(quantity + 1);
+  };
+
+  const decreaseQty = () => {
+    if (quantity <= 1) return;
+
+    setQuantity(quantity - 1);
+  };
+
+  const setItemToCart = () => {
+    const cartItem = {
+      product: product?._id,
+      name: product?.name,
+      price: product?.price,
+      image: product?.Images?.[0]?.url,
+      stock: product?.stock,
+      quantity: quantity,
+    };
+
+    dispatch(setCartItem(cartItem));
+    toast.success("Item added to cart");
+  };
 
   if (isLoading) return <Loader />;
 
@@ -91,20 +121,44 @@ const ProductDetails = () => {
 
         <p id="product_price">${product?.price}</p>
         <div className="stockCounter d-inline">
-          <span className="btn btn-danger minus">-</span>
+          {/* Minus Button */}
+          <span
+            className="btn btn-danger minus"
+            onClick={decreaseQty}
+            style={{
+              pointerEvents: quantity <= 1 ? "none" : "auto",
+              opacity: quantity <= 1 ? 0.5 : 1,
+            }}
+          >
+            -
+          </span>
+
           <input
             type="number"
             className="form-control count d-inline"
-            value="1"
-            readonly
+            value={quantity}
+            readOnly // Fixed casing
           />
-          <span className="btn btn-primary plus">+</span>
+
+          {/* Plus Button */}
+          <span
+            className="btn btn-primary plus"
+            onClick={increaseQty}
+            style={{
+              pointerEvents: quantity >= product?.stock ? "none" : "auto",
+              opacity: quantity >= product?.stock ? 0.5 : 1,
+            }}
+          >
+            +
+          </span>
         </div>
+
         <button
           type="button"
           id="cart_btn"
           className="btn btn-primary d-inline ms-4"
-          disabled=""
+          disabled={product?.stock <= 0}
+          onClick={setItemToCart}
         >
           Add to Cart
         </button>
